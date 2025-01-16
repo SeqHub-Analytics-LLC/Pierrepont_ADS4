@@ -1,0 +1,11 @@
+numpy
+pandas
+seaborn
+scikit-learn
+tensorflow
+matplotlib
+mlflow
+streamlit
+fastapi
+gunicorn
+optuna
