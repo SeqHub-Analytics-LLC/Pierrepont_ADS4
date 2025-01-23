@@ -9,3 +9,7 @@ streamlit
 fastapi
 gunicorn
 optuna
+uvicorn
+joblib
+os
+tk
