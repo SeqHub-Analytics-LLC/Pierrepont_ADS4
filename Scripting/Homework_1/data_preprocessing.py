@@ -42,7 +42,7 @@ def create_age_groups(df):
     df['AgeGroup'] = pd.cut(df['Age'], bins=age_bins, labels=age_labels, right=False)
     return df, age_labels
 
-def encode_age_groups(df, labels)
+def encode_age_groups(df, labels):
     ordinal_encoder = OrdinalEncoder(categories=[labels])
     df['AgeCategoryEncoded'] = ordinal_encoder.fit_transform(df[['AgeCategory']])
     return df
@@ -103,5 +103,11 @@ def data_preprocessing(paths):
     save_data(X_train_scaled, X_test, y_train, y_test)
 
     return input_features, X_train_scaled, X_test, y_train, y_test
+
+if __name__ == "__main__":
+    paths = 'data/Power_lifting.csv'
+    _,X_train_scaled,_,_= data_preprocessing(paths)
+    print(X_train_scaled.head())
+
 
     
