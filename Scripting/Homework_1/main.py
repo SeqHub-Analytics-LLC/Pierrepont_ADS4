@@ -10,7 +10,7 @@ if __name__ == "__main__":
     data = ["X_train", "X_test", "y_train", "y_test"]
 
     # Perform data preprocessing
-    Data, X_train, X_test, y_train, y_test = data_preprocessing(data)
+    input_features, X_train, X_test, y_train, y_test = data_preprocessing(data)
 
     # Train the model using Optuna
     best_model, model_path, study_path = train_model_with_optuna(X_train, y_train, n_trials=50)
