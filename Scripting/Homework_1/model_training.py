@@ -1,6 +1,6 @@
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
-
+import optuna
 def train_decision_tree(X_train, y_train):
     model = DecisionTreeRegressor(random_state=23, max_depth=7)
     model.fit(X_train, y_train)
@@ -15,3 +15,4 @@ def train_gradient_boosting(X_train, y_train):
     model = GradientBoostingRegressor(max_depth=3, random_state=85)
     model.fit(X_train, y_train)
     return model
+
