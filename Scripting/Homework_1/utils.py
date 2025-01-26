@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import optuna
-import joblib
-import numpy as np
+import tkinter as tk
 
 def print_metrics(rmse, r2):
     print("Evaluation Metrics:")
@@ -19,5 +18,6 @@ def plot_param_importance(study):
         plt.xticks(rotation=45)
         plt.tight_layout()
         plt.show()
+        plt.savefig("model_output/param_importance.png")
     except Exception as e:
         print(f"Error plotting parameter importance: {e}")

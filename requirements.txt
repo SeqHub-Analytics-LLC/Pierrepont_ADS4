@@ -2,7 +2,7 @@ numpy
 pandas
 seaborn
 scikit-learn
-tensorflow
+#tensorflow
 matplotlib
 mlflow
 streamlit

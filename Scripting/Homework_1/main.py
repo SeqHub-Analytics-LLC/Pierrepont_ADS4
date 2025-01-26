@@ -2,7 +2,7 @@ import joblib, os
 from data_preprocessing import data_preprocessing
 from model_training import objective, train_model_with_optuna
 from model_validation import evaluate_model
-from utils import plot_param_importance, print_metrics
+from utils import plot_param_importance, print_metrics 
 
 if __name__ == "__main__":
     os.chdir("Scripting\Homework_1")
