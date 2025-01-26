@@ -1,6 +1,14 @@
 import pandas as pd
 import numpy as np
+import os
 from sklearn.preprocessing import StandardScaler, OrdinalEncoder
+from sklearn.model_selection import train_test_split
+
+def train_split_save_data(data, test_size=0.2):
+    train, test = train_test_split(data, test_size=test_size, random_state=42)
+    train.to_csv('data/train.csv', index=False)
+    test.to_csv('data/test.csv', index=False)
+    return train, test
 
 def clean_squat_data(df):
     def convert(x):
@@ -26,30 +34,29 @@ def handle_missing_values(train, test, column):
     test[column].fillna(mean_value, inplace=True)
     return train, test
 
-def preprocess_input_data(input_features):
-    kg_features = input_features.filter(regex='Kg').columns
-    input_features[kg_features] = np.abs(input_features[kg_features])
-    input_features.drop(columns=["Name", "playerId"], inplace=True)
-    return input_features
-
-def preprocess_target_data(targets):
-    targets.drop(columns=["playerId"], inplace=True)
-    return targets
+def preprocess_data(train):
+    kg_features = train.filter(regex='Kg').columns
+    train[kg_features] = np.abs(train[kg_features])
+    train.drop(columns=["Name", "playerId"], inplace=True)
+    return train
 
 def create_age_groups(df):
     age_bins = [0, 18, 23, 38, 49, 59, 69, float('inf')]
     age_labels = ['18 and under', '19-23', '24-38', '39-49', '50-59', '60-69', '70+']
     df['AgeGroup'] = pd.cut(df['Age'], bins=age_bins, labels=age_labels, right=False)
+    df.drop(columns=['Age'], inplace=True)
     return df, age_labels
 
 def encode_age_groups(df, labels):
     ordinal_encoder = OrdinalEncoder(categories=[labels])
-    df['AgeCategoryEncoded'] = ordinal_encoder.fit_transform(df[['AgeCategory']])
+    df['AgeCategoryEncoded'] = ordinal_encoder.fit_transform(df[['AgeGroup']])
+    df.drop(columns=['AgeGroup'], inplace=True)
     return df
 
 def add_relative_strengths(df):
     df['RelativeSquatStrength'] = df['BestSquatKg'] / df['BodyweightKg']
     df['RelativeDeadliftStrength'] = df['BestDeadliftKg'] / df['BodyweightKg']
+    df = df.drop(columns=['BestSquatKg', 'BestDeadliftKg'])
     return df
 
 def encode_categorical_data(df):
@@ -63,11 +70,11 @@ def encode_categorical_data(df):
     df = pd.get_dummies(df, columns=['Equipment', "Sex"], drop_first=True)
     return df
 
-def split_and_scale_data(input_features, target, train_size):
-    X_train = input_features.iloc[:train_size, :]
-    X_test = input_features.iloc[train_size:, :]
-    y_train = target.iloc[:train_size]
-    y_test = target.iloc[train_size:]
+def scale_split_data(train, test, target):
+    X_train = train
+    y_train = train[target]
+    X_test = test
+    y_test = test[target]
 
     scaler = StandardScaler()
     X_train_scaled = scaler.fit_transform(X_train)
@@ -76,38 +83,46 @@ def split_and_scale_data(input_features, target, train_size):
     return X_train_scaled, X_test, y_train, y_test
 
 def save_data(X_train, X_test, y_train, y_test):
-    X_train.to_csv('processed_data/X_train.csv', index=False)
-    X_test.to_csv('processed_data/X_test.csv', index=False)
-    y_train.to_csv('processed_data/y_train.csv', index=False)
-    y_test.to_csv('processed_data/y_test.csv', index=False)
+    X_train.to_csv('processed_data\X_train_scaled.csv', index=False)
+    X_test.to_csv('processed_data\X_test.csv', index=False)
+    y_train.to_csv('processed_data\y_train.csv', index=False)
+    y_test.to_csv('processed_data\y_test.csv', index=False)
 
-def data_preprocessing(paths):
-    data = pd.read_csv(paths)
+def data_preprocessing(path):
+    data = pd.read_csv(path)
 
-    data = clean_squat_data(X)
-    handle_missing_values(X, X, 'Age')
+    train, test = train_split_save_data(data)
+    train, test = clean_squat_data(train), clean_squat_data(test)
+    train, test = handle_missing_values(train, test, 'Age')
 
-    input_features = preprocess_input_data(X)
-    targets = preprocess_target_data(y)
+    train, test = preprocess_data(train), preprocess_data(test)  
 
-    input_features = create_age_groups(input_features, 'Age')
-    input_features = add_relative_strengths(input_features)
-    input_features = encode_categorical_data(input_features)
+    train, train_age_labels = create_age_groups(train)
+    test, test_age_labels = create_age_groups(test)
 
-    target = targets['BestBenchKg']
-    input_features.drop(columns=['BestBenchKg', 'Age'], inplace=True)
+    train = encode_age_groups(train, train_age_labels)
+    test = encode_age_groups(test, test_age_labels)
 
-    train_size = int(len(input_features) * 0.8)
-    X_train_scaled, X_test, y_train, y_test = split_and_scale_data(input_features, target, train_size)
+    train = add_relative_strengths(train)
+    test = add_relative_strengths(test)
+    
+    train = encode_categorical_data(train)
+    test = encode_categorical_data(test)
+
+    target = 'BestBenchKg'
+
+    X_train_scaled, X_test, y_train, y_test = scale_split_data(train, test, target)
 
     save_data(X_train_scaled, X_test, y_train, y_test)
 
-    return input_features, X_train_scaled, X_test, y_train, y_test
+    return X_train_scaled, X_test, y_train, y_test
 
 if __name__ == "__main__":
-    paths = 'data/Power_lifting.csv'
-    _,X_train_scaled,_,_= data_preprocessing(paths)
-    print(X_train_scaled.head())
+    os.chdir("Scripting\Homework_1")
+    paths = 'data\Power_lifting.csv'
+    data = pd.read_csv(paths)
+    train, test = train_split_save_data(data)
+    data = clean_squat_data(data)
 
 
     

@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 
 def objective(trial):
-    X_train = pd.read_csv('processed_data/X_train.csv')
+    X_train = pd.read_csv('processed_data/X_train_scaled.csv')
     y_train = pd.read_csv('processed_data/y_train.csv')
 
     params = {
