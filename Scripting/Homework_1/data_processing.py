@@ -1,98 +1,104 @@
-# Target - BestBenchKg
+
 import pandas as pd
 import numpy as np
-from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import OrdinalEncoder
-from sklearn.model_selection import train_test_split
-from utils import save_encoder
 
-# Cleaning
-def convert(x):
+def load_data():
+    data=pd.read_csv("Power_lifting.csv")
+    
+    return data
+
+def load_datasets(train_path, test_path, train_target_path, test_target_path):
+    X_train = pd.read_csv(train_path)
+    X_test = pd.read_csv(test_path)
+    y_train = pd.read_csv(train_target_path)
+    y_test = pd.read_csv(test_target_path)
+    return X_train, X_test, y_train, y_test
+
+def clean_y_test(y_test):
+    y_test = y_test.drop(columns=["Age", "BodyweightKg", "BestDeadliftKg"], inplace=False)
+    return y_test
+
+def convert_to_float(x):
     try:
         x = float(x)
     except:
         return x
     return x
 
-def load_and_clean_data(file_path):
-    """Loads and cleans the dataset."""
-    data = pd.read_csv(file_path)
-    clean_data = fix_best_squat(data)
-    input_features = clean_data.drop(columns =["playerId","Name"])
-    kg_features = input_features.filter(regex='Kg').columns
-    input_features[kg_features] = np.abs(input_features[kg_features])
-    input_features = engineer_features(input_features)
-    #encoding
-    full_data, new_target, oh_encoder, ordinal_encoder = encode_features(input_features)
+def correct_best_squat_kg(X_train, X_test):
+    def fix_column(data, column_name):
+        wrong_data = data[column_name].unique()[[*map(lambda x: type(convert_to_float(x)) != float, data[column_name].unique())]]
+        corrected_data = np.array([*map(lambda x: x[:-2] + x[-1], wrong_data)]).astype('float')
+        for i in range(len(wrong_data)):
+            data.loc[data[column_name] == wrong_data[i], column_name] = corrected_data[i]
+        data[column_name] = data[column_name].astype('float')
 
-    #save encoders
-    save_encoder(oh_encoder, "model_output/oh_enocoder.pkl")
-    save_encoder(ordinal_encoder, "model_output/ordinal_encoder.pkl")
-    return full_data, new_target
+    fix_column(X_train, 'BestSquatKg')
+    fix_column(X_test, 'BestSquatKg')
+    return X_train, X_test
 
-def fix_best_squat(data):
-    # fixing weird entries in BestSquatKg column
-    BestSquatKg_dtype = [*map(lambda x : type(convert(x)) != float, data['BestSquatKg'].unique())]
-    wrong_data_format = data['BestSquatKg'].unique()[BestSquatKg_dtype]
-    correct_train_data = np.array([*map(lambda x : x[:-2] + x[-1], wrong_data_format)])
-    correct_train_data = correct_train_data.astype('float')
-
-    for i in range(len(wrong_data_format)):
-        data.loc[data['BestSquatKg'] == wrong_data_format[i], 'BestSquatKg'] = correct_train_data[i]
-    data['BestSquatKg'] = data['BestSquatKg'].astype('float')
-    return data
-
-def engineer_features(data):
-    # Calculate relative strength by dividing the lift weights by the body weight
-    data['RelativeSquatStrength'] = data['BestSquatKg'] / data['BodyweightKg']
-    data['RelativeDeadliftStrength'] = data['BestDeadliftKg'] / data['BodyweightKg']
-
-    return data
-
-def encode_features(data):
-    target = data['BestBenchKg']
-    inputs = data.drop(columns = ['BestBenchKg'])
-    X_train, X_test, y_train, y_test = train_test_split(inputs, target, test_size=0.2, random_state=42)
+def fill_missing_ages(X_train, X_test):
 
     mean_age = X_train['Age'].mean()
+    X_train['Age'].fillna(mean_age, inplace=True)
+    X_test['Age'].fillna(mean_age, inplace=True)
+    return X_train, X_test
 
-    #handle train data
-    X_train['Age'] = X_train['Age'].fillna(mean_age)
-    #handle test data
-    X_test['Age'] = X_test['Age'].fillna(mean_age)
+def preprocess_features_targets(X_train, X_test, y_train, y_test):
+    input_features = pd.concat([X_train, X_test], axis=0)
+    targets = pd.concat([y_train, y_test], axis=0)
 
-    oh_encoder = OneHotEncoder(drop='first', sparse_output=False)
-    X_train_encoded = oh_encoder.fit_transform(X_train[['Equipment','Sex']])
-    X_test_encoded = oh_encoder.transform(X_test[['Equipment','Sex']])
+    # Ensure kg features are positive
+    kg_features = input_features.filter(regex='Kg').columns
+    input_features[kg_features] = np.abs(input_features[kg_features])
 
-    #GET COLUMN NAMES FOR NEWLY ENCODED VARIABLES
-    encoded_columns = oh_encoder.get_feature_names_out(input_features = ['Equipment','Sex'])
+    # Drop unnecessary columns
+    input_features.drop(columns=["Name", "playerId"], inplace=True)
+    targets.drop(columns=["playerId"], inplace=True)
 
-    #only encoded variables
-    encoded_variables = np.concat([X_train_encoded,X_test_encoded], axis=0)
-    encoded_variables = pd.DataFrame(encoded_variables,columns=encoded_columns)
+    return input_features, targets
 
-    #combine with other input variables
-    combined_data = pd.concat([X_train,X_test], axis=0)
-    full_data = pd.concat([combined_data,encoded_variables], axis=1)
+def calculate_relative_strength(data_df):
+    data_df['RelativeSquatStrength'] = data_df['BestSquatKg'] / data_df['BodyweightKg']
+    data_df['RelativeDeadliftStrength'] = data_df['BestDeadliftKg'] / data_df['BodyweightKg']
+    return data_df
 
-    #combining targets
-    new_target = pd.concat([y_train,y_test], axis=0)
+def map_equipment(data_df):
+    """Map equipment types to their respective scores."""
+    equipment_scores = {
+        'Raw': 1,
+        'Wraps': 2,
+        'Single-ply': 3,
+        'Multi-ply': 4
+    }
+    data_df['Equipment_Index'] = data_df['Equipment'].map(equipment_scores)
+    return data_df
 
-    ## Bin Age
-    # Define the bins for the age categories
+def encode_age_category(data_df):
     bins = [0, 18, 23, 38, 49, 59, 69, np.inf]
     labels = ['Sub-Junior', 'Junior', 'Open', 'Masters 1', 'Masters 2', 'Masters 3', 'Masters 4']
 
-    # Bin the age data
-    full_data['AgeCategory'] = pd.cut(full_data['Age'], bins=bins, labels=labels, right=False)
-    #Encode Bins
+    data_df['AgeCategory'] = pd.cut(data_df['Age'], bins=bins, labels=labels, right=False)
+
     ordinal_encoder = OrdinalEncoder(categories=[labels])
-    full_data['AgeCategoryEncoded'] = ordinal_encoder.fit_transform(full_data[['AgeCategory']])
-    
-    #Drop redundant features
-    full_data.drop(columns = ["Sex", "Equipment", "Age","AgeCategory"],inplace=True)
+    data_df['AgeCategoryEncoded'] = ordinal_encoder.fit_transform(data_df[['AgeCategory']])
+    return data_df
 
-    return full_data, new_target, oh_encoder, ordinal_encoder
+def preprocess_pipeline(train_path, test_path, train_target_path, test_target_path):
+    X_train, X_test, y_train, y_test = load_datasets(train_path, test_path, train_target_path, test_target_path)
 
+    y_test = clean_y_test(y_test)
+    X_train, X_test = correct_best_squat_kg(X_train, X_test)
+    X_train, X_test = fill_missing_ages(X_train, X_test)
 
+    input_features, targets = preprocess_features_targets(X_train, X_test, y_train, y_test)
+    data_df = pd.concat([input_features, targets], axis=1)
+
+    data_df = calculate_relative_strength(data_df)
+    data_df = map_equipment(data_df)
+    data_df = encode_age_category(data_df)
+
+    return data_df
+if __name__=="__main__":
+    correct_best_squat_kg(X_train,X_test)
