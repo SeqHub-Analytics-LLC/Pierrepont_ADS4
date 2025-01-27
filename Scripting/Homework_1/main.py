@@ -1,6 +1,9 @@
 from data_processing import load_data, preprocess_data
-from model_training import train_decision_tree, train_random_forest, train_gradient_boosting
+from model_training import train_decision_tree, train_random_forest, train_gradient_boosting,train_xgboost_with_optuna
 from model_validation import evaluate
+from joblib import dump, load
+
+
 
 def main():
     X_train, X_test, y_train, y_test = load_data()
@@ -15,6 +18,14 @@ def main():
     evaluate(dtc_train_preds, dtc_test_preds, y_train, y_test)
     evaluate(rf_train_preds, rf_test_preds, y_train, y_test)
     evaluate(gbm_train_preds, gbm_test_preds, y_train, y_test)
+
+
+    final_model = train_xgboost_with_optuna(X_train, X_test, y_train, y_test)
+    xgb_train_preds, xgb_test_preds = final_model.predict(X_train), final_model.predict(X_test)
+    evaluate(xgb_train_preds, xgb_test_preds, y_train, y_test)
+
+    dump(final_model, 'xgboost_model.joblib')
+    
 
 if __name__ == "__main__":
     main()
