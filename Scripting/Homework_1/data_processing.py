@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 from utils import encode_age_category
 
 def convert(x):
@@ -50,6 +51,10 @@ def preprocess_data(X_train, X_test, y_train, y_test):
     X_train['BestSquatKg'] = X_train['BestSquatKg'].astype('float')
     X_test['BestSquatKg'] = X_test['BestSquatKg'].astype('float')
     
+    Scaler = StandardScaler()
+    X_train = Scaler.fit_transform(X_train)
+    X_test = Scaler.transform(X_test)
+
     X_train.drop_duplicates(inplace=True)
     X_test.drop_duplicates(inplace=True)
     
