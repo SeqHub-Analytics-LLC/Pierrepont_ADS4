@@ -1,9 +1,9 @@
-from pydantic import BaseModel, EmailStr, validator
+from pydantic import BaseModel, EmailStr, field_validator
 
 class User(BaseModel):
     email: EmailStr
 
-    @validator("email")
+    @field_validator("email")
     def check_email_domain(cls, value):
         if not value.endswith("@example.com"):
             raise ValueError("Email must end with @example.com")

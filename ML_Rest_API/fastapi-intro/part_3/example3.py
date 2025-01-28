@@ -1,4 +1,5 @@
 from datetime import datetime
+from pydantic import BaseModel
 
 class Metadata(BaseModel):
     request_id: str

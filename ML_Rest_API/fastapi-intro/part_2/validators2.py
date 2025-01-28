@@ -1,10 +1,10 @@
-from pydantic import BaseModel,validator
+from pydantic import BaseModel,field_validator
 
 class Person(BaseModel):
     first_name: str
     last_name: str
 
-    @validator("first_name", "last_name")
+    @field_validator("first_name", "last_name")
     def capitalize_name(cls, value):
         return value.title()  # Capitalize the first letter of each word
 
