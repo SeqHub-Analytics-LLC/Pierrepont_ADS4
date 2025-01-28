@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import optuna
-import tkinter as tk
 
 def print_metrics(rmse, r2):
     print("Evaluation Metrics:")
@@ -14,10 +13,10 @@ def plot_param_importance(study):
         plt.bar(importance.keys(), importance.values(), color="skyblue")
         plt.xlabel("Hyperparameters")
         plt.ylabel("Importance")
-        plt.title("Hyperparameter Importance")
+        plt.title("Hyperparameter Importances")
         plt.xticks(rotation=45)
         plt.tight_layout()
+        plt.savefig("model_output/param_importances.png")
         plt.show()
-        plt.savefig("model_output/param_importance.png")
     except Exception as e:
         print(f"Error plotting parameter importance: {e}")

@@ -78,15 +78,17 @@ def scale_split_data(train, test, target):
 
     scaler = StandardScaler()
     X_train_scaled = scaler.fit_transform(X_train)
-    X_train_scaled = pd.DataFrame(X_train_scaled, columns=X_train.columns)
+    X_test = scaler.transform(X_test)
+    X_train_scaled = pd.DataFrame(X_train_scaled)
+    X_test = pd.DataFrame(X_test)
 
-    return X_train_scaled, X_test, y_train, y_test
+    return scaler, X_train_scaled, X_test, y_train, y_test
 
 def save_data(X_train, X_test, y_train, y_test):
-    X_train.to_csv('processed_data\X_train_scaled.csv', index=False)
-    X_test.to_csv('processed_data\X_test.csv', index=False)
-    y_train.to_csv('processed_data\y_train.csv', index=False)
-    y_test.to_csv('processed_data\y_test.csv', index=False)
+    X_train.to_csv('processed_data/X_train_scaled.csv', index=False)
+    X_test.to_csv('processed_data/X_test.csv', index=False)
+    y_train.to_csv('processed_data/y_train.csv', index=False)
+    y_test.to_csv('processed_data/y_test.csv', index=False)
 
 def data_preprocessing(path):
     data = pd.read_csv(path)
@@ -111,15 +113,15 @@ def data_preprocessing(path):
 
     target = 'BestBenchKg'
 
-    X_train_scaled, X_test, y_train, y_test = scale_split_data(train, test, target)
+    scaler, X_train_scaled, X_test, y_train, y_test = scale_split_data(train, test, target)
 
     save_data(X_train_scaled, X_test, y_train, y_test)
 
-    return X_train_scaled, X_test, y_train, y_test
+    return scaler, X_train_scaled, X_test, y_train, y_test
 
 if __name__ == "__main__":
-    os.chdir("Scripting\Homework_1")
-    paths = 'data\Power_lifting.csv'
+    os.chdir("Scripting/Homework_1")
+    paths = 'data/Power_lifting.csv'
     data = pd.read_csv(paths)
     train, test = train_split_save_data(data)
     data = clean_squat_data(data)
