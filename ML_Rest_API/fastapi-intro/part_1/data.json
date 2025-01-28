@@ -1,0 +1,6 @@
+{
+    "name": "Alice",
+    "age": 25,
+    "skills": ["Math", "Science"],
+    "is_student": true
+}
