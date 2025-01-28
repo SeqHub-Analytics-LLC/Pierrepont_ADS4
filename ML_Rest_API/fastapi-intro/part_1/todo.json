@@ -1,0 +1,10 @@
+[
+    {
+        "task": "Learn Python",
+        "done": false
+    },
+    {
+        "task": "Read a book",
+        "done": false
+    }
+]
