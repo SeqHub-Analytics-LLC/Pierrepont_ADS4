@@ -1,11 +1,11 @@
-from pydantic import BaseModel, validator
+from pydantic import BaseModel, field_validator
 
 class Person(BaseModel):
     first_name: str
     last_name: str
     age: int
 
-    @validator("age")
+    @field_validator("age")
     def validate_age(cls, value):
         if value <= 0:
             raise ValueError("Age must be a positive number")
