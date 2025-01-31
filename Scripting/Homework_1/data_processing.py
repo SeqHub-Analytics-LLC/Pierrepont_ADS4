@@ -12,6 +12,7 @@ def convert(x):
     return x
 
 def load_data():
+    """Loads the data from the powerlifting.csv file, preforms basic preproccessing, and returns the train and test data."""
 
     data = pd.read_csv("powerlifting.csv")
     
