@@ -1,0 +1,22 @@
+from typing import List
+from pydantic import BaseModel, validator, ValidationError
+
+class Hobby(BaseModel):
+    hobbies: List[str]
+
+    @validator("hobbies")
+    def validate_hobbies(cls, value):
+        if not value:
+            raise ValueError("At least one hobby is required.")
+        return value
+
+try:
+    valid_hobby = Hobby(hobbies=["reading", "sports"])
+    print("Valid case:", valid_hobby)
+except ValidationError as e:
+    print("Validation error:", e)
+
+try:
+    invalid_hobby = Hobby(hobbies=[]) 
+except ValidationError as e:
+    print("Validation error:", e)
