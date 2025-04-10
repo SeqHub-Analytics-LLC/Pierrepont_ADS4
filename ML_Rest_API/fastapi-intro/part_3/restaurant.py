@@ -23,6 +23,9 @@ class MenuItem(BaseModel):
     price: float = Field(..., gt=0, description="Price must be greater than 0")
     available: bool = Field(default=True)
 
+class MenuItemResponse(BaseModel):
+    menu_items: list[MenuItems]
+
 menu_items = [
     MenuItem(name="Burger", category=Category.sandwich, price=8.99),
     MenuItem(name="Chicken Wings", category=Category.appetizer, price=5.49),
@@ -71,7 +74,7 @@ class OrderStatus(str, Enum):
     cancelled = "Cancelled"
 
 class OrderItem(BaseModel):
-    item_id: int
+    item_id: int = Field(..., ge=0, description="Item id must be a least 0")
     quantity: int = Field(..., ge=1, description="Quantity must be at least 1")
 
 class Order(BaseModel):
