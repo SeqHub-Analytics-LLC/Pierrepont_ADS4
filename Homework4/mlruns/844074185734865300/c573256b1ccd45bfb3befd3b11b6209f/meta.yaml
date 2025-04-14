@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/atulkrishnan/Documents/PythonNotebooks/Pierrepont_ADS4/Homework4/mlruns/844074185734865300/c573256b1ccd45bfb3befd3b11b6209f/artifacts
+deleted_time: 1744654625234
+end_time: 1744653524440
+entry_point_name: ''
+experiment_id: '844074185734865300'
+lifecycle_stage: deleted
+run_id: c573256b1ccd45bfb3befd3b11b6209f
+run_name: persistent-horse-649
+run_uuid: c573256b1ccd45bfb3befd3b11b6209f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744653524414
+status: 4
+tags: []
+user_id: atulkrishnan

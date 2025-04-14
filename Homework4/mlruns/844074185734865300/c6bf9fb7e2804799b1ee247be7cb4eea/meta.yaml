@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/atulkrishnan/Documents/PythonNotebooks/Pierrepont_ADS4/Homework4/mlruns/844074185734865300/c6bf9fb7e2804799b1ee247be7cb4eea/artifacts
+end_time: 1744655105774
+entry_point_name: ''
+experiment_id: '844074185734865300'
+lifecycle_stage: active
+run_id: c6bf9fb7e2804799b1ee247be7cb4eea
+run_name: bittersweet-bee-46
+run_uuid: c6bf9fb7e2804799b1ee247be7cb4eea
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744655105682
+status: 3
+tags: []
+user_id: atulkrishnan

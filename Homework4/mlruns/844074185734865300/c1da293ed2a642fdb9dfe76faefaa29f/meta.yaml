@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/atulkrishnan/Documents/PythonNotebooks/Pierrepont_ADS4/Homework4/mlruns/844074185734865300/c1da293ed2a642fdb9dfe76faefaa29f/artifacts
+end_time: 1744655107325
+entry_point_name: ''
+experiment_id: '844074185734865300'
+lifecycle_stage: active
+run_id: c1da293ed2a642fdb9dfe76faefaa29f
+run_name: rare-midge-853
+run_uuid: c1da293ed2a642fdb9dfe76faefaa29f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744655107303
+status: 3
+tags: []
+user_id: atulkrishnan

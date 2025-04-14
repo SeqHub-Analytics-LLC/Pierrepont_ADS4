@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/atulkrishnan/Documents/PythonNotebooks/Pierrepont_ADS4/Homework4/mlruns/844074185734865300/01ca91a0f8a043929c3288cb32178253/artifacts
+end_time: 1744655107025
+entry_point_name: ''
+experiment_id: '844074185734865300'
+lifecycle_stage: active
+run_id: 01ca91a0f8a043929c3288cb32178253
+run_name: marvelous-vole-686
+run_uuid: 01ca91a0f8a043929c3288cb32178253
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744655106935
+status: 3
+tags: []
+user_id: atulkrishnan

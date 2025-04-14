@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/atulkrishnan/Documents/PythonNotebooks/Pierrepont_ADS4/Homework4/mlruns/844074185734865300/daca2c3293324cc89488472fc8deadbe/artifacts
+end_time: 1744655105259
+entry_point_name: ''
+experiment_id: '844074185734865300'
+lifecycle_stage: active
+run_id: daca2c3293324cc89488472fc8deadbe
+run_name: flawless-rat-633
+run_uuid: daca2c3293324cc89488472fc8deadbe
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744655105186
+status: 3
+tags: []
+user_id: atulkrishnan

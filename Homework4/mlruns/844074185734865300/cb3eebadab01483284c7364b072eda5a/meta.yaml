@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/atulkrishnan/Documents/PythonNotebooks/Pierrepont_ADS4/Homework4/mlruns/844074185734865300/cb3eebadab01483284c7364b072eda5a/artifacts
+end_time: 1744655106933
+entry_point_name: ''
+experiment_id: '844074185734865300'
+lifecycle_stage: active
+run_id: cb3eebadab01483284c7364b072eda5a
+run_name: languid-hare-884
+run_uuid: cb3eebadab01483284c7364b072eda5a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744655106833
+status: 3
+tags: []
+user_id: atulkrishnan

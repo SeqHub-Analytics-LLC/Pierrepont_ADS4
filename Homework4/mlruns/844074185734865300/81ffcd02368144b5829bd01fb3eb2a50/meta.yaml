@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/atulkrishnan/Documents/PythonNotebooks/Pierrepont_ADS4/Homework4/mlruns/844074185734865300/81ffcd02368144b5829bd01fb3eb2a50/artifacts
+deleted_time: 1744655124843
+end_time: 1744654819524
+entry_point_name: ''
+experiment_id: '844074185734865300'
+lifecycle_stage: deleted
+run_id: 81ffcd02368144b5829bd01fb3eb2a50
+run_name: Final Model Training
+run_uuid: 81ffcd02368144b5829bd01fb3eb2a50
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744654817978
+status: 3
+tags: []
+user_id: atulkrishnan

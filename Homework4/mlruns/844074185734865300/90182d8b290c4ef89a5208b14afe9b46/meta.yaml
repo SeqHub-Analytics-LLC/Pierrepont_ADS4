@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/atulkrishnan/Documents/PythonNotebooks/Pierrepont_ADS4/Homework4/mlruns/844074185734865300/90182d8b290c4ef89a5208b14afe9b46/artifacts
+end_time: 1744655106831
+entry_point_name: ''
+experiment_id: '844074185734865300'
+lifecycle_stage: active
+run_id: 90182d8b290c4ef89a5208b14afe9b46
+run_name: calm-whale-458
+run_uuid: 90182d8b290c4ef89a5208b14afe9b46
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744655106753
+status: 3
+tags: []
+user_id: atulkrishnan

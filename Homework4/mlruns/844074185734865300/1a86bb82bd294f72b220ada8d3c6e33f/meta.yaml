@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/atulkrishnan/Documents/PythonNotebooks/Pierrepont_ADS4/Homework4/mlruns/844074185734865300/1a86bb82bd294f72b220ada8d3c6e33f/artifacts
+end_time: 1744655105975
+entry_point_name: ''
+experiment_id: '844074185734865300'
+lifecycle_stage: active
+run_id: 1a86bb82bd294f72b220ada8d3c6e33f
+run_name: merciful-skunk-307
+run_uuid: 1a86bb82bd294f72b220ada8d3c6e33f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744655105921
+status: 3
+tags: []
+user_id: atulkrishnan

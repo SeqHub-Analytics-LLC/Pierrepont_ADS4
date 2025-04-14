@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/atulkrishnan/Documents/PythonNotebooks/Pierrepont_ADS4/Homework4/mlruns/844074185734865300/e90d35f3dc2349eab6bebbb3c0d017e5/artifacts
+end_time: 1744655109115
+entry_point_name: ''
+experiment_id: '844074185734865300'
+lifecycle_stage: active
+run_id: e90d35f3dc2349eab6bebbb3c0d017e5
+run_name: Parent Run
+run_uuid: e90d35f3dc2349eab6bebbb3c0d017e5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744655104259
+status: 3
+tags: []
+user_id: atulkrishnan

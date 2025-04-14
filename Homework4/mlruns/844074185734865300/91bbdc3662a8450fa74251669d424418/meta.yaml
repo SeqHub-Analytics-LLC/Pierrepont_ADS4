@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/atulkrishnan/Documents/PythonNotebooks/Pierrepont_ADS4/Homework4/mlruns/844074185734865300/91bbdc3662a8450fa74251669d424418/artifacts
+deleted_time: 1744655124845
+end_time: 1744654817976
+entry_point_name: ''
+experiment_id: '844074185734865300'
+lifecycle_stage: deleted
+run_id: 91bbdc3662a8450fa74251669d424418
+run_name: Hyperparameter Optimization
+run_uuid: 91bbdc3662a8450fa74251669d424418
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744654814928
+status: 3
+tags: []
+user_id: atulkrishnan

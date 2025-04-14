@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/atulkrishnan/Documents/PythonNotebooks/Pierrepont_ADS4/Homework4/mlruns/844074185734865300/83335507a1c0451889dfc2bf4bd28965/artifacts
+end_time: 1744655106268
+entry_point_name: ''
+experiment_id: '844074185734865300'
+lifecycle_stage: active
+run_id: 83335507a1c0451889dfc2bf4bd28965
+run_name: resilient-calf-120
+run_uuid: 83335507a1c0451889dfc2bf4bd28965
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744655106218
+status: 3
+tags: []
+user_id: atulkrishnan

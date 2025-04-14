@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/atulkrishnan/Documents/PythonNotebooks/Pierrepont_ADS4/Homework4/mlruns/844074185734865300/9a743129a0fb482c947eccacc43a184c/artifacts
+end_time: 1744655105284
+entry_point_name: ''
+experiment_id: '844074185734865300'
+lifecycle_stage: active
+run_id: 9a743129a0fb482c947eccacc43a184c
+run_name: rare-ram-664
+run_uuid: 9a743129a0fb482c947eccacc43a184c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744655105261
+status: 3
+tags: []
+user_id: atulkrishnan

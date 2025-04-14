@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/atulkrishnan/Documents/PythonNotebooks/Pierrepont_ADS4/Homework4/mlruns/844074185734865300/fbdf0acd634649a1aba996aa838f1ee4/artifacts
+end_time: 1744655106046
+entry_point_name: ''
+experiment_id: '844074185734865300'
+lifecycle_stage: active
+run_id: fbdf0acd634649a1aba996aa838f1ee4
+run_name: melodic-calf-351
+run_uuid: fbdf0acd634649a1aba996aa838f1ee4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744655105977
+status: 3
+tags: []
+user_id: atulkrishnan

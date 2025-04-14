@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/atulkrishnan/Documents/PythonNotebooks/Pierrepont_ADS4/Homework4/mlruns/844074185734865300/c0feec430f6540c8bc071a2a52a4d214/artifacts
+deleted_time: 1744654625225
+end_time: 1744653566535
+entry_point_name: ''
+experiment_id: '844074185734865300'
+lifecycle_stage: deleted
+run_id: c0feec430f6540c8bc071a2a52a4d214
+run_name: funny-shrimp-746
+run_uuid: c0feec430f6540c8bc071a2a52a4d214
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744653566512
+status: 4
+tags: []
+user_id: atulkrishnan

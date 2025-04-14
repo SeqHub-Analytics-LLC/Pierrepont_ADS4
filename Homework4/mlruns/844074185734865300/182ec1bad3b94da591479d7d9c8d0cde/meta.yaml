@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/atulkrishnan/Documents/PythonNotebooks/Pierrepont_ADS4/Homework4/mlruns/844074185734865300/182ec1bad3b94da591479d7d9c8d0cde/artifacts
+end_time: 1744655106507
+entry_point_name: ''
+experiment_id: '844074185734865300'
+lifecycle_stage: active
+run_id: 182ec1bad3b94da591479d7d9c8d0cde
+run_name: upset-slug-38
+run_uuid: 182ec1bad3b94da591479d7d9c8d0cde
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744655106467
+status: 3
+tags: []
+user_id: atulkrishnan

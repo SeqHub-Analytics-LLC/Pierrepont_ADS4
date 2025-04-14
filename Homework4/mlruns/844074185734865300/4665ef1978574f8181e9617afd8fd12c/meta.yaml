@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/atulkrishnan/Documents/PythonNotebooks/Pierrepont_ADS4/Homework4/mlruns/844074185734865300/4665ef1978574f8181e9617afd8fd12c/artifacts
+end_time: 1744655105582
+entry_point_name: ''
+experiment_id: '844074185734865300'
+lifecycle_stage: active
+run_id: 4665ef1978574f8181e9617afd8fd12c
+run_name: loud-frog-524
+run_uuid: 4665ef1978574f8181e9617afd8fd12c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744655105496
+status: 3
+tags: []
+user_id: atulkrishnan

@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/atulkrishnan/Documents/PythonNotebooks/Pierrepont_ADS4/Homework4/mlruns/844074185734865300/3c034a3e848944f796d239ce4272a37c/artifacts
+end_time: 1744655105054
+entry_point_name: ''
+experiment_id: '844074185734865300'
+lifecycle_stage: active
+run_id: 3c034a3e848944f796d239ce4272a37c
+run_name: unequaled-fawn-966
+run_uuid: 3c034a3e848944f796d239ce4272a37c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744655105031
+status: 3
+tags: []
+user_id: atulkrishnan

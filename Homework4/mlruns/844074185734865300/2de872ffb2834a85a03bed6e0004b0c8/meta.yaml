@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/atulkrishnan/Documents/PythonNotebooks/Pierrepont_ADS4/Homework4/mlruns/844074185734865300/2de872ffb2834a85a03bed6e0004b0c8/artifacts
+deleted_time: 1744654625234
+end_time: 1744653509078
+entry_point_name: ''
+experiment_id: '844074185734865300'
+lifecycle_stage: deleted
+run_id: 2de872ffb2834a85a03bed6e0004b0c8
+run_name: nimble-pig-227
+run_uuid: 2de872ffb2834a85a03bed6e0004b0c8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744653509054
+status: 4
+tags: []
+user_id: atulkrishnan

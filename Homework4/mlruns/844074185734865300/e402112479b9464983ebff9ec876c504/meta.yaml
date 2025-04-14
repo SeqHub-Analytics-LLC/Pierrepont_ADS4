@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/atulkrishnan/Documents/PythonNotebooks/Pierrepont_ADS4/Homework4/mlruns/844074185734865300/e402112479b9464983ebff9ec876c504/artifacts
+deleted_time: 1744654625235
+end_time: 1744653331596
+entry_point_name: ''
+experiment_id: '844074185734865300'
+lifecycle_stage: deleted
+run_id: e402112479b9464983ebff9ec876c504
+run_name: awesome-squid-13
+run_uuid: e402112479b9464983ebff9ec876c504
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744653331569
+status: 4
+tags: []
+user_id: atulkrishnan

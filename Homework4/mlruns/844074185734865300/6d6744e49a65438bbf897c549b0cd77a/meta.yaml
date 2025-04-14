@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/atulkrishnan/Documents/PythonNotebooks/Pierrepont_ADS4/Homework4/mlruns/844074185734865300/6d6744e49a65438bbf897c549b0cd77a/artifacts
+end_time: 1744655105494
+entry_point_name: ''
+experiment_id: '844074185734865300'
+lifecycle_stage: active
+run_id: 6d6744e49a65438bbf897c549b0cd77a
+run_name: delicate-swan-723
+run_uuid: 6d6744e49a65438bbf897c549b0cd77a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744655105461
+status: 3
+tags: []
+user_id: atulkrishnan

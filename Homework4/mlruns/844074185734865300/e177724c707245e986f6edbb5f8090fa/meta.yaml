@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/atulkrishnan/Documents/PythonNotebooks/Pierrepont_ADS4/Homework4/mlruns/844074185734865300/e177724c707245e986f6edbb5f8090fa/artifacts
+end_time: 1744655105184
+entry_point_name: ''
+experiment_id: '844074185734865300'
+lifecycle_stage: active
+run_id: e177724c707245e986f6edbb5f8090fa
+run_name: learned-steed-193
+run_uuid: e177724c707245e986f6edbb5f8090fa
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744655105083
+status: 3
+tags: []
+user_id: atulkrishnan

@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/atulkrishnan/Documents/PythonNotebooks/Pierrepont_ADS4/Homework4/mlruns/844074185734865300/1f8948227cbd4890ba37cf7b81db2e76/artifacts
+end_time: 1744655105641
+entry_point_name: ''
+experiment_id: '844074185734865300'
+lifecycle_stage: active
+run_id: 1f8948227cbd4890ba37cf7b81db2e76
+run_name: ambitious-kit-973
+run_uuid: 1f8948227cbd4890ba37cf7b81db2e76
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744655105583
+status: 3
+tags: []
+user_id: atulkrishnan

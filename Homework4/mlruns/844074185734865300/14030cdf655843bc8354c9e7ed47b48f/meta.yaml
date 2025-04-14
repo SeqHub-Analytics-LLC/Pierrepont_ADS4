@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/atulkrishnan/Documents/PythonNotebooks/Pierrepont_ADS4/Homework4/mlruns/844074185734865300/14030cdf655843bc8354c9e7ed47b48f/artifacts
+deleted_time: 1744654625225
+end_time: 1744654007709
+entry_point_name: ''
+experiment_id: '844074185734865300'
+lifecycle_stage: deleted
+run_id: 14030cdf655843bc8354c9e7ed47b48f
+run_name: smiling-elk-742
+run_uuid: 14030cdf655843bc8354c9e7ed47b48f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744654007682
+status: 4
+tags: []
+user_id: atulkrishnan

@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/atulkrishnan/Documents/PythonNotebooks/Pierrepont_ADS4/Homework4/mlruns/844074185734865300/4fabe58e0cf34bc898d6060cb267c423/artifacts
+end_time: 1744655105459
+entry_point_name: ''
+experiment_id: '844074185734865300'
+lifecycle_stage: active
+run_id: 4fabe58e0cf34bc898d6060cb267c423
+run_name: sneaky-pug-902
+run_uuid: 4fabe58e0cf34bc898d6060cb267c423
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744655105383
+status: 3
+tags: []
+user_id: atulkrishnan

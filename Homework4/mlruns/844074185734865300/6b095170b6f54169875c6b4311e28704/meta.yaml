@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/atulkrishnan/Documents/PythonNotebooks/Pierrepont_ADS4/Homework4/mlruns/844074185734865300/6b095170b6f54169875c6b4311e28704/artifacts
+end_time: 1744655106123
+entry_point_name: ''
+experiment_id: '844074185734865300'
+lifecycle_stage: active
+run_id: 6b095170b6f54169875c6b4311e28704
+run_name: righteous-rat-960
+run_uuid: 6b095170b6f54169875c6b4311e28704
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744655106093
+status: 3
+tags: []
+user_id: atulkrishnan

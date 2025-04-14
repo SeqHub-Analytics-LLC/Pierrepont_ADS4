@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/atulkrishnan/Documents/PythonNotebooks/Pierrepont_ADS4/Homework4/mlruns/844074185734865300/538560008b2e45daa01f71ba742d7ecf/artifacts
+deleted_time: 1744654625225
+end_time: 1744654560022
+entry_point_name: ''
+experiment_id: '844074185734865300'
+lifecycle_stage: deleted
+run_id: 538560008b2e45daa01f71ba742d7ecf
+run_name: welcoming-crab-931
+run_uuid: 538560008b2e45daa01f71ba742d7ecf
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744654559995
+status: 4
+tags: []
+user_id: atulkrishnan

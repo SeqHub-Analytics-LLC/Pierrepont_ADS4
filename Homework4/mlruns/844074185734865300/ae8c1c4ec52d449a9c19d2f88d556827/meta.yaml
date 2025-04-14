@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/atulkrishnan/Documents/PythonNotebooks/Pierrepont_ADS4/Homework4/mlruns/844074185734865300/ae8c1c4ec52d449a9c19d2f88d556827/artifacts
+end_time: 1744655104575
+entry_point_name: ''
+experiment_id: '844074185734865300'
+lifecycle_stage: active
+run_id: ae8c1c4ec52d449a9c19d2f88d556827
+run_name: fearless-deer-292
+run_uuid: ae8c1c4ec52d449a9c19d2f88d556827
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744655104537
+status: 3
+tags: []
+user_id: atulkrishnan
