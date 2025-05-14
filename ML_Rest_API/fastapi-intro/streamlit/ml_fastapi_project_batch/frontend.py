@@ -91,7 +91,7 @@ elif prediction_type == "Single-point Prediction":
             }
 
             # FastAPI endpoint URL for single-point prediction
-            api_url = "http://0.0.0.0:8000/predict" 
+            api_url = "https://benchpress-fastapi-backend.onrender.com/predict" 
 
             # Make the POST request to FastAPI
             response = requests.post(api_url, json=payload)
@@ -147,7 +147,7 @@ elif prediction_type == "Batch Prediction":
             index=0
         )
         # FastAPI endpoint URL for batch prediction
-        api_url = "http://0.0.0.0:8000/predict_batch"  # Replace with your FastAPI URL
+        api_url = "https://benchpress-fastapi-backend.onrender.com/predict_batch"  # Replace with your FastAPI URL
 
         # Button to trigger batch prediction
         if st.button("Predict"):
