@@ -24,8 +24,8 @@ if prediction_type == None:
 
     st.markdown("""
         **How It Works:**
-        - You provide your **weight lifted** (in kilograms) and the **number of reps** you can do.
-        - The app predicts the maximum weight you should be able to lift based on that information.
+        - You provide the relevenat inputs such as your body weight and the amount of weight you can deadlift amongst many others.
+        - The app predicts the maximum weight you should be able to bench lift based on that information.
         - With this prediction, you can better understand your current limits and plan your training accordingly!
 
         **What You Can Do Here:**
