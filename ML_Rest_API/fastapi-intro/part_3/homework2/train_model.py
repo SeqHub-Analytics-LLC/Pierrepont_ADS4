@@ -35,7 +35,7 @@ def run_optimization(X_train_final, y_train, n_trials=30):
 
 
     best_model = RandomForestClassifier(**study.best_params, random_state=42)
-    best_model.fit(X_train, y_train)
+    best_model.fit(X_train_final, y_train)
 
     save_pickle(best_model, 'pickles/best_model.pkl')
 

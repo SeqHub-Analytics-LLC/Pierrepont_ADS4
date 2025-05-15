@@ -27,38 +27,38 @@ class ModelType(str, Enum):
 
 # Input Data model
 class InputFeatures(BaseModel):
-    PlayerWeight: float
-    PlayerHeight: float
+    Player_Weight: float
+    Player_Height: float
     Previous_Injuries: PreviousInjuriesEnum
     Position: Position
-    TrainingSurface: TrainingSurface
-    PlayerAge: int
-    TrainingIntensity: float
-    RecoveryTime: float
+    Training_Surface: TrainingSurface
+    Player_Age: int
+    Training_Intensity: float
+    Recovery_Time: float
 
     # Age validator to ensure it is between 18 and 100
-    @field_validator('PlayerAge')
+    @field_validator('Player_Age')
     def validate_age(cls, v):
         if not (18 <= v <= 100):
             raise ValueError('Age must be between 18 and 100')
         return v
 
     # Field validators for player height
-    @field_validator('PlayerHeight')
+    @field_validator('Player_Height')
     def validate_height(cls, v):
         if v <= 0:
             raise ValueError(f'{v} must be greater than 0')
         return v
 
     # validator for player weight
-    @field_validator('PlayerWeight')
+    @field_validator('Player_Weight')
     def validate_weight(cls, v):
         if v <= 0:
             raise ValueError('Weight must be greater than 0')
         return v
 
     # Training Intensity validator to ensure it is between 0 and 1
-    @field_validator('TrainingIntensity')
+    @field_validator('Training_Intensity')
     def validate_training_intensity(cls, v):
         if not (0 <= v <= 1):
             raise ValueError('Training Intensity must be between 0 and 1')
