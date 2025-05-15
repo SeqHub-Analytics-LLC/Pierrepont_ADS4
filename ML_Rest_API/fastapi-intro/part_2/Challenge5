@@ -1,0 +1,34 @@
+from pydantic import BaseModel, field_validator
+class Product(BaseModel):    
+    name: str    
+    price: float    
+    stock: int    
+    
+    @field_validator("name")    
+    def validate_name(cls, value):        
+        # Validation logic here: ensure name is not empty
+        if not value:  # Check if the name is an empty string or only spaces
+            raise ValueError("Name cannot be empty")
+        return value
+
+    @field_validator("price")    
+    def validate_price(cls, value):        
+        # Validation logic here: ensure price is positive
+        if value <= 0:
+            raise ValueError("Price must be positive")
+        return value
+
+    @field_validator("stock")    
+    def validate_stock(cls, value):       
+        # Validation logic here: ensure stock is non-negative
+        if value < 0:
+            raise ValueError("Stock cannot be negative")
+        return value
+
+# Test with valid and invalid products
+try:
+    valid_product = Product(name="Laptop", price=999.99, stock=10)
+    print(valid_product)
+except:
+    invalid_product = Product(name="", price=-499.99, stock=-5)  
+# Should raise multiple errors

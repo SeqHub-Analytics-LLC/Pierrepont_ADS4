@@ -47,12 +47,12 @@ def get_players(team: str = Query(None, description="Filter players by team")):
 def add_player(player: Player):
     players.append(player)
     response = {"Message": "player successfully added"}
-    return response.json()
+    return response.model_dump_json()
 
 @app.get("/get_players/{team}/{jersey_number}")
 def get_player_by_number(
     team: str,
-    jersey_number: int = Path(..., ge=0, description="Jersey number must be positive")
+    jersey_number: int = Path(..., ge=0, lt = 100, description="Jersey number must be positive")
 ):
     matching_team = [p for p in players if p.team.lower() == team.lower()]
     if not matching_team:
