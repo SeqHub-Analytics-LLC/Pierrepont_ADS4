@@ -7,7 +7,9 @@ from fastapi import HTTPException
 
 
 # Load model and encoder
-#rf_model = joblib.load("artifacts/random_forests.pkl")
+rf_model = joblib.load("artifacts/random_forest_model.pkl")
+# Load feature columns order
+feature_columns = joblib.load("artifacts/model_features.pkl")
 
 
 def predict_single(request: PredictionRequest):
@@ -17,10 +19,13 @@ def predict_single(request: PredictionRequest):
   df_results = engineer_features(df)
   df_results = encode_features(df_results, categorical_cols=["Position", "Training_Surface" ],  path="artifacts/oneHotEncoder.pkl")
   df_results = scale_features(df_results, numeric_cols=["Player_Weight", "Player_Height", "Player_Age", "Training_Intensity", "Recovery_Time"] ,path="artifacts/standardScaler.pkl")
-  
+
+  # Reindex to match training feature columns
+  df_results = df_results.reindex(columns=feature_columns, fill_value=0)
+
   print(df_results.to_string())
-  #prediction = rf_model.predict(df_results)
-  #return prediction
+  prediction = rf_model.predict(df_results)
+  return prediction
 
 if __name__ == "__main__":
     # Example usage
