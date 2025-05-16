@@ -63,6 +63,9 @@ class InputFeatures(BaseModel):
         if not (0 <= v <= 1):
             raise ValueError('Training Intensity must be between 0 and 1')
         return v
+    model_config = {
+        "use_enum_values": True
+    }
     
 
 # Prediction Request Data model

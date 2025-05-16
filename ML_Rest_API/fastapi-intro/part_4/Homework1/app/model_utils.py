@@ -18,6 +18,7 @@ def engineer_features(df):
     return df
 
 def encode_features(df, categorical_cols, path=None):
+    df["Previous_Injuries"] = df["Previous_Injuries"].replace({"No": 0, "Yes": 1})
     if path:
         encoder = load_pickle(path)
     else:
