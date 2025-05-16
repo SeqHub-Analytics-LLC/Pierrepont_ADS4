@@ -27,8 +27,9 @@ def read_root():
 
 @app.post("/predict")
 def predict(data: PredictionRequest):
-    prediction = predict_single(data)
-    return {"prediction": prediction[0]}
+    #print(data)
+    prediction = int(list(predict_single(data))[0])   
+    return {"prediction": prediction}
 
 
 if __name__ == "__main__":

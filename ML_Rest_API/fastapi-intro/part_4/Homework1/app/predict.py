@@ -13,6 +13,8 @@ feature_columns = joblib.load("artifacts/model_features.pkl")
 
 
 def predict_single(request: PredictionRequest):
+  print(request)
+
 
   df = pd.DataFrame([request.Features.model_dump() ])
   # Apply feature engineering, encoding and scaling
@@ -24,6 +26,7 @@ def predict_single(request: PredictionRequest):
   df_results = df_results.reindex(columns=feature_columns, fill_value=0)
 
   print(df_results.to_string())
+  print(df_results.shape)
   prediction = rf_model.predict(df_results)
   return prediction
 
