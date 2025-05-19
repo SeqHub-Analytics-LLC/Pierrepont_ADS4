@@ -1,8 +1,9 @@
 # app/main.py
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from models import PredictionRequest
 from predict import predict_single
+from typing import List
 
 # Create the FastAPI app instance
 app = FastAPI(
@@ -30,6 +31,14 @@ def predict(data: PredictionRequest):
     #print(data)
     prediction = int(list(predict_single(data))[0])   
     return {"prediction": prediction}
+
+@app.post("/predict_batch")
+def predict_batch(data: List[PredictionRequest]):
+    try:
+        predictions = [int(list(predict_single(item))[0]) for item in data]
+        return {"predictions": predictions}
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
 
 
 if __name__ == "__main__":
