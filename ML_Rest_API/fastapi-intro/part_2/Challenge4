@@ -1,0 +1,25 @@
+from pydantic import BaseModel, field_validator
+class Address(BaseModel):    
+    street: str    
+    city: str    
+    
+    @field_validator("city")    
+    def validate_city_length(cls, city_name):       
+        # Validation logic here: ensure city has at least 3 characters
+        if len(city_name) < 3:
+            raise ValueError("City name must be at least 3 characters long")
+        return city_name
+
+class UserProfile(BaseModel):    
+    username: str    
+    address: Address
+
+try:
+    # Test with valid and invalid addresses
+    valid_profile = UserProfile(username="jane_doe", address=
+    {"street": "123 Elm Street", "city": "NY"})
+    print(valid_profile)
+except:   
+    invalid_profile = UserProfile(username="jane_doe", address=
+    {"street": "123 Elm Street", "city": "NY"})  # Should raise an error
+    print(inalid_profile)
