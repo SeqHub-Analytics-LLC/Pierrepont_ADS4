@@ -115,4 +115,3 @@ def filter_players(team: str = Query(None, description="Filter players by team")
         raise HTTPException(status_code=404, detail="No players found matching the criteria.")
     
     return filtered_players
-
