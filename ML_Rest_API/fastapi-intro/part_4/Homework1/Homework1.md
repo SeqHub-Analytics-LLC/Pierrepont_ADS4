@@ -1,18 +1,20 @@
 # Serving the Injury Prediction Model with FastAPI
 
-In this assignment, you are expected to **leverage your previous work** where you converted a Jupyter notebook into modular Python scripts, and now your task is to **serve the injury prediction model using FastAPI**. The primary goal is to build two API endpoints:
+In this assignment, you are expected to **leverage your previous work** where you converted a Jupyter notebook into modular Python scripts, and now your task is to **serve the injury prediction model using FastAPI**. The primary goal is to build three API endpoints:
 
 1. **Prediction Endpoint**: Predict the class (injured vs. not injured).
 2. **Probability Endpoint**: Predict the probabilities of injury (class probability).
+3. **Batch Endpoint**: Get batch predictions given uploaded dataset
 
 ---
 
 ## 📌 Objective
 
-The goal of this project is to **serve** an already trained injury prediction model using **FastAPI**. You will build two API endpoints for this:
+The goal of this project is to **serve** an already trained injury prediction model using **FastAPI**. You will build three API endpoints for this:
 
 - **`/predict`**: Accepts input features and returns the predicted class (e.g., injured or not injured).
 - **`/predict_probabilities`**: Accepts input features and returns the predicted probabilities (e.g., the likelihood of being injured).
+- A batch prediction endpoint as **`/predict_batch`**. Accepts uploaded csv file and gives predictions for all entries in data.
 
 The assignment reinforces the process of:
 - **Serving pre-trained models** using FastAPI.
@@ -28,6 +30,7 @@ You are **not required to train the model again**. Instead, you will leverage yo
 - **Step 2**: **Build a FastAPI app** that serves the pre-trained model:
   - **`/predict`**: Class prediction endpoint.
   - **`/predict_probabilities`**: Probability prediction endpoint.
+  - **`/predict_batch`**: Batch Prediction for actual classes.
 - **Step 3**: Structure the FastAPI project with clean, modular code, ensuring separation of concerns and maintainability.
 
 ---
