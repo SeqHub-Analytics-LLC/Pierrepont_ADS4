@@ -1,3 +1,5 @@
+# app/models.py
+
 from pydantic import BaseModel, field_validator, root_validator
 from enum import Enum
 
@@ -15,7 +17,7 @@ class Position(str, Enum):
     G = "Goalkeeper"
 
 # Enum for Previous Injuries  (0 or 1)
-class PreviousInjuriesEnum(int, Enum):
+class PreviousInjuriesEnum(str, Enum):
     Yes = "Yes"
     No = "No"
 
@@ -25,14 +27,14 @@ class ModelType(str, Enum):
 
 # Input Data model
 class InputFeatures(BaseModel):
-    PlayerWeight: float
-    PlayerHeight: float
+    Player_Weight: float
+    Player_Height: float
     Previous_Injuries: PreviousInjuriesEnum
     Position: Position
-    TrainingSurface: TrainingSurface
-    PlayerAge: int
-    TrainingIntensity: float
-    RecoveryTime: float
+    Training_Surface: TrainingSurface
+    Player_Age: int
+    Training_Intensity: float
+    Recovery_Time: float
 
     # Age validator to ensure it is between 18 and 100
     @field_validator('Player_Age')
@@ -61,6 +63,9 @@ class InputFeatures(BaseModel):
         if not (0 <= v <= 1):
             raise ValueError('Training Intensity must be between 0 and 1')
         return v
+    model_config = {
+        "use_enum_values": True
+    }
     
 
 # Prediction Request Data model

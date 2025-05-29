@@ -1,48 +1,52 @@
-import pandas as pd 
+import pandas as pd
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
+import pickle
+
+def save_pickle(obj, filepath):
+    with open(filepath, "wb") as f:
+        pickle.dump(obj, f)
+
+def load_pickle(filepath):
+    with open(filepath, "rb") as f:
+        return pickle.load(f)
 
 def engineer_features(df):
-    df['BMI'] = df['Player_Weight'] / (df['Player_Height'] / 100) ** 2
-    gaps = [-float('inf'), 18.5, 24.9, 29.9, 34.9, 39.9, float('inf')]
-    categories = ['Underweight', 'Normal', 'Overweight', 'Obesity I', 'Obesity II', 'Obesity III']
-    df['BMI_Classification'] = pd.cut(df['BMI'], bins=gaps, labels=categories, right=False)
-    df["Age_Group"] = pd.cut(
-        df["Player_Age"],
-        bins=[18, 22, 26, 30, 34, df["Player_Age"].max()],
-        labels=["18-22", "23-26", "27-30", "31-34", "35+"],
-        include_lowest=True,
-    )
+    if 'Player_Weight' in df.columns:
+        df['Player_Weight'] = df['Player_Weight'].round(2)
+    if 'Player_Height' in df.columns:
+        df['Player_Height'] = df['Player_Height'].round(2)
     return df
 
+def encode_features(df, categorical_cols, path=None):
+    df["Previous_Injuries"] = df["Previous_Injuries"].replace({"No": 0, "Yes": 1})
+    if path:
+        encoder = load_pickle(path)
+    else:
+        encoder = OneHotEncoder(drop='first', sparse_output=False)
+        encoder.fit(df[categorical_cols])
+        save_pickle(encoder, "artifacts/oneHotEncoder.pkl")
+    encoded = encoder.transform(df[categorical_cols])
+    # Create a DataFrame with the encoded features
+    encoded_df = pd.DataFrame(encoded,
+    columns=encoder.get_feature_names_out(categorical_cols), index=df.index)
 
-def encode_features(df, categorical_cols):
-    encoder = OneHotEncoder(drop='first')
-    encoded = encoder.fit_transform(df[categorical_cols])
-    encoded_feature_names = encoder.get_feature_names_out(categorical_cols)
-
-    encoded_df = pd.DataFrame(encoded, columns= encoded_feature_names, index=df.index)
     df = df.drop(columns=categorical_cols)
     df = pd.concat([df, encoded_df], axis=1)
     return df
 
-def scale_features(df, numeric_cols):
-    scaler = StandardScaler()
-    df[numeric_cols] = scaler.fit_transform(df[numeric_cols])
-    return df 
+def scale_features(df, numeric_cols, path=None):
+    if path:
+        scaler = load_pickle(path)
+    else:
+        scaler = StandardScaler()
+        scaler.fit(df[numeric_cols])
+        save_pickle(scaler, "artifacts/standardScaler.pkl")
+    # Scale the numeric features
+    df[numeric_cols] = scaler.transform(df[numeric_cols])
+    return df
 
 if __name__=="__main__":
     df=pd.read_csv("injury_data_with_categories.csv")
-    categorical_cols= ["BMI_Classification", "Age_Group","Training_Surface", "Position"]
-    scale_cols = ['Player_Age', 'Player_Weight', 'Player_Height', 'Previous_Injuries',
-              'Training_Intensity', 'Recovery_Time']
-    engf=engineer_features(df)
-    print(engf.head(5))
-    encf=encode_features(df, categorical_cols)
-    print(encf.head(5))
-    sf=scale_features(df, scale_cols)
-    print(sf.head(5))
-
-
-
-
-
+    new_df=engineer_features(df)
+    encode_features(new_df, categorical_cols=["Position", "Training_Surface", ])
+    scale_features(new_df, numeric_cols=["Player_Weight", "Player_Height", "Player_Age", "Training_Intensity", "Recovery_Time"])

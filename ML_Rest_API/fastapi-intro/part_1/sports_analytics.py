@@ -47,6 +47,7 @@ def get_players(team: str = Query(None, description="Filter players by team")):
         return filtered_players
     return players
 #Task 2
+<<<<<<< HEAD
 '''
 @app.post("/add_player/{name}")
 def add_player(name: str, player: Player):
@@ -54,12 +55,27 @@ def add_player(name: str, player: Player):
         raise HTTPException(status_code=400, detail="A player with this name already exists.")
 
     new_player = {
+=======
+@app.post("/add_player/{name}")
+def add_player(name: str, player: Player):
+    for player in players:
+        if player["name"] == name:
+            raise HTTPException(status_code=400, detail="A player with this name already exists.")
+
+    new_player = {
+        "age": player.age,
+        "name": name
+>>>>>>> main
         "jersey_number": player.jersey_number,
         "team": player.team,
         "position": player.position.value,
         "ppg": player.ppg
     }
+<<<<<<< HEAD
     players[name]= new_player
+=======
+    players.append(new_player)
+>>>>>>> main
     return {"message": "Player added successfully", "player": new_player}
 '''
 #Task 3
@@ -91,6 +107,32 @@ def filter_players(team: str = Query(None, description="Filter players by team")
         raise HTTPException(status_code=404, detail="No players found matching the criteria.")
     
     return filtered_players
+<<<<<<< HEAD
 '''
 
 
+=======
+
+
+@app.get("/filter_players/")
+def filter_players(team: str = Query(None, description="Filter players by team"), position: Position = Query(None, description="Filter players by position")):
+    filtered_players = []
+    for player in players:
+        if team and position: 
+            if player["team"] == team and player["position"] == position:
+                filtered_players.append(player)
+        elif team: 
+            if player["team"] == team:
+                filtered_players.append(player)
+        elif position:
+            if player["position"] == position:
+                filtered_players.append(player)
+        else:
+            filtered_players.append(player)
+
+    if not filtered_players:
+        raise HTTPException(status_code=404, detail="No players found matching the criteria.")
+    
+    return filtered_players
+
+>>>>>>> main

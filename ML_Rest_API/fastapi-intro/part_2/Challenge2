@@ -1,0 +1,31 @@
+from pydantic import BaseModel, Field, validator
+from typing import List, Optional
+
+class Location(BaseModel):
+    city: str
+    state: str
+    zip_code: str
+
+    @validator('zip_code')
+    def check_zip_code(cls, zip):
+        if len(zip) != 5 or not zip.isdigit():
+            raise ValueError('zip_code must be a 5-digit string')
+        return zip
+
+class Student(BaseModel):
+    name: str
+    age: int
+    grade_level: str
+
+    @validator('grade_level')
+    def validate_grade_level(cls, grade):
+        valid_grades = ["Freshman", "Sophomore", "Junior", "Senior"]
+        if grade not in valid_grades:
+            raise ValueError(f"grade_level must be one of {valid_grades}")
+        return grade
+
+class School(BaseModel):
+    name: str
+    location: Location
+    students: List[Student]
+
